@@ -1,3 +1,4 @@
+import { CadastroPage } from './../pages/cadastro/cadastro';
 import { LoginPage } from './../pages/login/login';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -15,7 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    LoginPage
+    LoginPage,
+    CadastroPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    LoginPage
+    LoginPage,
+    CadastroPage
   ],
   providers: [
     StatusBar,
