@@ -1,3 +1,4 @@
+import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CadastroPage} from '../cadastro/cadastro'
@@ -17,8 +18,10 @@ export class LoginPage {
 
   email: String
   senha: String
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  urlImage: String = 'assets/imgs/user.svg'
+  isUsuarioValido: boolean = false
+  nomeUsuario: String = ''
+  constructor(public navCtrl: NavController, public navParams: NavParams, public usuarioProvider: UsuarioProvider) {
   }
 
   ionViewDidLoad() {
@@ -31,7 +34,7 @@ export class LoginPage {
     let corAntiga = elementoBotao.style.background
     elementoBotao.style.background = '#7f8c8d'
 
-    setTimeout(() => { 
+    /*setTimeout(() => { 
       if(this.email == 'admin' && this.senha =='admin'){ 
         alert('logado!')
       } else { 
@@ -39,12 +42,28 @@ export class LoginPage {
       }
       elementoBotao.innerText = 'ENTRAR'
       elementoBotao.style.background = corAntiga
-    }, 3000)
-  }
+    }, 3000)*/
+    this.usuarioProvider .buscarUserGithub (this.email).then(
+      (data: any) => {
+      if (data.avatar_url) {
+      //se o usuário existir faça isso
+      this.urlImage = data.avatar_url
+      this.nomeUsuario = data.name
+      this.isUsuarioValido = true
+      console.log(data)
+      } else {
+      this.isUsuarioValido = false
+      this.urlImage = 'assets/imgs/boy.svg'
+      }
+      })
+      } 
+    
+  
 
 abrirCadastro(){ 
   this.navCtrl.push(CadastroPage)
-}   
+}     
+
 
 
 

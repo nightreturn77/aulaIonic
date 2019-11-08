@@ -1,3 +1,16 @@
 page-cadastro {
+        .header-md::after{ 
+            background-image: none !important;
+        }
+        .toolbar-background-ios{ 
+            border-width: 0 0 0 !important;
+
+        }
+        .list-ios > .item-block:first-child{
+            border-top: 0 !important;
+        }
+   /*     .scroll-content{
+        overflow-y: hidden !important;  
+    }*/
 
 }

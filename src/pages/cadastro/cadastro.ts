@@ -1,3 +1,4 @@
+import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { LoginPage } from './../login/login';
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
@@ -21,7 +22,12 @@ export class CadastroPage {
   nome: String
   dtNascimento: Date
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  cep: String
+  bairro: String
+  rua: String
+  estado: String
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public UsuarioProvider:UsuarioProvider) {
   }
 
   ionViewDidLoad() {
@@ -34,5 +40,18 @@ export class CadastroPage {
 
   jaPossuoConta(){ 
     this.navCtrl.push(LoginPage)
-  }
+  } 
+
+  
+buscarCep(){
+  this.UsuarioProvider.buscarEnderecoViaCep(this.cep).then((data: any) => {
+    this.bairro = data.bairro
+    this.rua = data.logradouro
+    this.estado = data.localidade
+    this.cep = data.cep
+
+
+    console.log(data)
+  })
+}
 }

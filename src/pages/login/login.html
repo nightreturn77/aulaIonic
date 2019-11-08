@@ -7,17 +7,17 @@
 
 <ion-content padding>
     <div class="boxLogin">
-        <img src="assets/imgs/boy.svg" width="150px" height="150px"/>
+        <img src="{{urlImage}}" width="150px" height="150px"/>
       </div>
     <ion-list>
-        <ion-item>
+        <ion-item >
           <ion-label stacked> 
               E-mail
           </ion-label>
-          <ion-input type="email" [(ngModel)]="email"></ion-input>
+          <ion-input type="email" [(ngModel)]="email" (blur)="fazerLogin()"></ion-input>
         </ion-item>
     
-        <ion-item>
+        <ion-item *ngIf = "isUsuarioValido">
             <ion-label stacked> 
                 Senha
             </ion-label>
@@ -32,4 +32,3 @@
       </ion-list>
 
 </ion-content>
- 
